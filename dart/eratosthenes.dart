@@ -1,7 +1,7 @@
 /*
   Sieve of Eratosthenes
   Author: Jan Prazak
-  Project page: https://github.com/Amarok24
+  Project page: https://github.com/Amarok24/eratosthenes-sieve
   Version: 1.0
   Date: 2021-04-22 (Dart implementation)
 
