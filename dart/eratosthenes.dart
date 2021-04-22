@@ -13,28 +13,28 @@
 
 import "dart:math";
 
-List<int> getPrimes(int maxLimit) {
-  var field = [];
-  var primes = [2];
-  var currentPrime = 2;
-  var currentIndex = 2;
+List<int> primeNumbers(int maxLimit) {
+  List<int> field = []; // A growable list (array)
+  List<int> primes = [2]; // A growable list (array) holding value 2
+  int currentPrime = 2;
+  int currentIndex = 2;
 
+  // stopAfter = highest index after which no other primes will be sieved (simplest code optimization)
   int stopAfter = sqrt(maxLimit).floor();
-  // stopAfter = highest index after which no other primes
-  // will be sieved (simplest code optimization)
 
   if (maxLimit < 2) {
-    return [-1];
+    throw new RangeError("maxLimit must be > 1");
   } else if (maxLimit == 2) {
     return primes;
   }
 
   for (int i = 0; i <= maxLimit; i++) {
-    field.add(i); // field will contain [0, 1, 2, 3, ... maxLimit]
+    field.add(i);
+    // field will contain [0, 1, 2, 3, ... maxLimit]
   }
 
   while (currentPrime <= stopAfter) {
-    // with maxLimit of 50 this will run up to currentPrime 7, not beyond
+    // With maxLimit of 50 this will run up to currentPrime 7, not beyond
 
     currentIndex += currentPrime;
     while (currentIndex <= maxLimit) {
@@ -42,7 +42,7 @@ List<int> getPrimes(int maxLimit) {
       currentIndex += currentPrime;
     }
 
-    // now let's go to the the very next prime number in field
+    // Now let's go to the the very next prime number in field.
     currentIndex = currentPrime;
     while (true) {
       currentIndex++;
@@ -55,8 +55,9 @@ List<int> getPrimes(int maxLimit) {
     primes.add(currentPrime);
   }
 
-  // now let's populate the primes array with all remaining numbers from field
+  // Now let's populate the primes array with all remaining numbers from field.
   currentIndex++;
+
   for (int i = currentIndex; i <= maxLimit; i++) {
     if (field[i] != 0) {
       primes.add(field[i]);
@@ -74,9 +75,12 @@ void main(List<String> arguments) {
     maxNum = int.parse(arguments[0]);
   }
 
-  intArray = getPrimes(maxNum);
-
-  intArray.forEach((element) {
-    print(element);
-  });
+  try {
+    intArray = primeNumbers(maxNum);
+    intArray.forEach((element) {
+      print(element);
+    });
+  } catch (e) {
+    print(e); // This prints "RangeError: maxLimit must be > 1"
+  }
 }
