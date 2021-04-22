@@ -17,8 +17,7 @@ function primeNumbers(maxLimit) {
   let currentPrime = 2;
   let currentIndex = 2;
 
-  // stopAfter = highest index after which no other primes
-  // will be sieved (simplest code optimization)
+  // stopAfter = highest index after which no other primes will be sieved (simplest code optimization)
   const stopAfter = Math.floor(Math.sqrt(maxLimit));
 
   if (maxLimit < 2) {
@@ -41,7 +40,7 @@ function primeNumbers(maxLimit) {
       currentIndex += currentPrime;
     }
 
-    // now let's go to the the very next prime number in field
+    // Now let's go to the the very next prime number in field
     currentIndex = currentPrime;
     while (true) {
       currentIndex++;
