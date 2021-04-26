@@ -1,5 +1,5 @@
 /*
-  Sieve of Eratosthenes
+  Sieve of Eratosthenes (JavaScript implementation)
   Author: Jan Prazak
   Project page: https://github.com/Amarok24/eratosthenes-sieve
   Version: 1.0
