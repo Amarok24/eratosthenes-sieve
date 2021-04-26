@@ -17,9 +17,11 @@ class Main {
 
   public static ArrayList <Integer> primeNumbers(int maxLimit) {
     ArrayList<Integer> field = new ArrayList<Integer>(); // A growable list (array)
-    ArrayList<Integer> primes = new ArrayList<Integer>(2); // A growable list (array) holding value 2
+    ArrayList<Integer> primes = new ArrayList<Integer>();
     int currentPrime = 2;
     int currentIndex = 2;
+
+    primes.add(2);
 
     // stopAfter = highest index after which no other primes will be sieved
     // (simplest code optimization)
