@@ -24,7 +24,7 @@ class Main {
     primes.add(2);
 
     // stopAfter = highest index after which no other primes will be sieved
-    // (simplest code optimization)
+    // (simplest code optimization). Math.floor() in Java returns type 'double'.
     int stopAfter = (int) Math.floor(Math.sqrt(maxLimit));
 
     if (maxLimit < 2) {
