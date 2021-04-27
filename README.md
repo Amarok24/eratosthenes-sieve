@@ -13,6 +13,9 @@ git clone https://github.com/Amarok24/eratosthenes-sieve.git
 cd eratosthenes-sieve
 ```
 
+## Try out the code
+If you don't want to install a specific language compiler or interpreter, I recommend [Replit](https://replit.com/) where you can develop and run programs in your internet browser. Replit supports many popular languages.
+
 ## License
 
 License: The Unlicense. For more information, please refer to http://unlicense.org
