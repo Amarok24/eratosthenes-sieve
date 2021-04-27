@@ -13,7 +13,7 @@
 
 import java.util.ArrayList;
 
-class Main {
+class Eratosthenes {
 
   public static ArrayList <Integer> primeNumbers(int maxLimit) {
     ArrayList<Integer> field = new ArrayList<Integer>(); // A growable list (array)
@@ -21,11 +21,12 @@ class Main {
     int currentPrime = 2;
     int currentIndex = 2;
 
-    primes.add(2);
-
     // stopAfter = highest index after which no other primes will be sieved
-    // (simplest code optimization). Math.floor() in Java returns type 'double'.
-    int stopAfter = (int) Math.floor(Math.sqrt(maxLimit));
+    // (simplest code optimization). In Java Math.floor() returns type 'double'.
+    // Type casting to int truncates the fractional part (same as using Math.floor).
+    int stopAfter = (int)Math.sqrt(maxLimit);
+
+    primes.add(2);
 
     if (maxLimit < 2) {
       throw new ArithmeticException("maxLimit must be > 1");
@@ -86,7 +87,7 @@ class Main {
         System.out.println(element);
       }
     } catch (Exception e) {
-      // This prints "java.lang.ArithmeticException: maxLimit must be > 1"
+      // This prints "java.lang.ArithmeticException: maxLimit must be > 1".
       System.out.println(e);
     }
   }

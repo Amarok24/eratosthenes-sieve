@@ -11,6 +11,7 @@
   About the algorithm: https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 */
 
+// @dart=2.12
 import "dart:math";
 
 List<int> primeNumbers(int maxLimit) {
