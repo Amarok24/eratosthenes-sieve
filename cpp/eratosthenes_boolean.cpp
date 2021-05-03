@@ -1,9 +1,9 @@
 /*
-  Sieve of Eratosthenes (C++ implementation)
+  Sieve of Eratosthenes (C++ implementation, vector of booleans)
   Author: Jan Prazak
   Project page: https://github.com/Amarok24/eratosthenes-sieve
   Version: 1.0
-  Date: 2021-04-27
+  Date: 2021-05-03
 
   License: The Unlicense. For more information, please refer to http://unlicense.org
   (A license with no conditions whatsoever which dedicates works to the public domain. Unlicensed works, modifications, and larger works may be distributed under different terms and without source code.)
@@ -19,15 +19,15 @@
 using namespace std;
 
 vector<int> primeNumbers(const int maxLimit) {
-  vector<int> field; // A growable list (array)
-  vector<int> primes = {2}; // Initial value 2
+  vector<bool> field(maxLimit + 1, true); // All indexes initialized to 'true'.
+  vector<int> primes = {2}; // Initial value 2.
   int currentPrime = 2;
   int currentIndex = 2;
 
-  // stopAfter = highest index after which no other primes will be sieved
+  // 'stopAfter' = highest index after which no other primes will be sieved
   // (simplest code optimization).
   // Type casting to int truncates the fractional part (similar to using trunc).
-  int stopAfter = (int)sqrt( (double)maxLimit );
+  int stopAfter = (int) sqrt((double) maxLimit);
 
   if (maxLimit < 2) {
     throw "maxLimit must be > 1";
@@ -35,16 +35,11 @@ vector<int> primeNumbers(const int maxLimit) {
     return primes;
   }
 
-  for (int i = 0; i <= maxLimit; i++) {
-    field.push_back(i);
-    // field will contain [0, 1, 2, 3, ... maxLimit]
-  }
-
   while (currentPrime <= stopAfter) {
-    // With maxLimit of 50 this will run up to currentPrime 7, not beyond
+    // With maxLimit of 50 this will run up to currentPrime 7, not beyond.
     currentIndex += currentPrime;
     while (currentIndex <= maxLimit) {
-      field[currentIndex] = 0; // mark as removed from field
+      field[currentIndex] = false; // Mark as non-prime.
       currentIndex += currentPrime;
     }
 
@@ -52,8 +47,8 @@ vector<int> primeNumbers(const int maxLimit) {
     currentIndex = currentPrime;
     while (true) {
       currentIndex++;
-      if (field[currentIndex] != 0) {
-        break; // break while loop
+      if (field[currentIndex] == true) {
+        break; // Next prime found, break the while-loop.
       }
     }
 
@@ -64,8 +59,8 @@ vector<int> primeNumbers(const int maxLimit) {
   // Now let's populate the primes array with all remaining numbers from field.
   currentIndex++;
   for (int i = currentIndex; i <= maxLimit; i++) {
-    if (field[i] != 0) {
-      primes.push_back(field[i]);
+    if (field[i] == true) {
+      primes.push_back(i);
     }
   }
 
@@ -87,7 +82,7 @@ int main(int argc, char* argv[]) {
     }
     cout << endl;
   } catch (const char* msg) {
-    // This prints: "maxLimit must be > 1"
+    // This prints: "maxLimit must be > 1".
     cerr << msg << endl;
   }
 }
