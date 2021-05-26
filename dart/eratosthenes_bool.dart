@@ -1,9 +1,9 @@
 /*
-  Sieve of Eratosthenes (Dart implementation)
+  Sieve of Eratosthenes (Dart implementation, list of booleans)
   Author: Jan Prazak
   Project page: https://github.com/Amarok24/eratosthenes-sieve
   Version: 1.0
-  Date: 2021-04-22
+  Date: 2021-05-26
 
   License: The Unlicense. For more information, please refer to http://unlicense.org
   (A license with no conditions whatsoever which dedicates works to the public domain. Unlicensed works, modifications, and larger works may be distributed under different terms and without source code.)
@@ -15,7 +15,8 @@
 import 'dart:math';
 
 List<int> primeNumbers(int maxLimit) {
-  List<int> field = []; // A growable list (array)
+  // A fixed-length list (array) of booleans initialized to "true".
+  List<bool> field = new List<bool>.filled(maxLimit + 1, true);
   List<int> primes = [2]; // A growable list (array) holding value 2
   int currentPrime = 2;
   int currentIndex = 2;
@@ -29,17 +30,11 @@ List<int> primeNumbers(int maxLimit) {
     return primes;
   }
 
-  for (int i = 0; i <= maxLimit; i++) {
-    field.add(i);
-    // field will contain [0, 1, 2, 3, ... maxLimit]
-  }
-
   while (currentPrime <= stopAfter) {
-    // With maxLimit of 50 this will run up to currentPrime 7, not beyond
-
+    // With maxLimit of 50 this will run up to currentPrime 7, not beyond.
     currentIndex += currentPrime;
     while (currentIndex <= maxLimit) {
-      field[currentIndex] = 0; // mark as removed from field
+      field[currentIndex] = false; // Mark as non-prime.
       currentIndex += currentPrime;
     }
 
@@ -47,8 +42,8 @@ List<int> primeNumbers(int maxLimit) {
     currentIndex = currentPrime;
     while (true) {
       currentIndex++;
-      if (field[currentIndex] != 0) {
-        break; // break while loop
+      if (field[currentIndex] == true) {
+        break; // Next prime found, break the while-loop.
       }
     }
 
@@ -57,11 +52,11 @@ List<int> primeNumbers(int maxLimit) {
   }
 
   // Now let's populate the primes array with all remaining numbers from field.
+  // I'm not sure how efficient this is in Dart (accessing indexes of a boolean field).
   currentIndex++;
-
   for (int i = currentIndex; i <= maxLimit; i++) {
-    if (field[i] != 0) {
-      primes.add(field[i]);
+    if (field[i] == true) {
+      primes.add(i);
     }
   }
 
