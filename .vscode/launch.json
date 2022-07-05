@@ -5,6 +5,13 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "java",
+      "name": "Launch Eratosthenes",
+      "request": "launch",
+      "mainClass": "Eratosthenes",
+      "projectName": "eratosthenes-sieve_42be3073"
+    },
+    {
       "name": "Dart & Flutter",
       "request": "launch",
       "type": "dart",

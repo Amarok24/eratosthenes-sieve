@@ -5,8 +5,8 @@
   Version: 1.0
   Date: 2021-05-26
 
-  License: The Unlicense. For more information, please refer to http://unlicense.org
-  (A license with no conditions whatsoever which dedicates works to the public domain. Unlicensed works, modifications, and larger works may be distributed under different terms and without source code.)
+  License: The Unlicense.
+  For more information, please refer to https://unlicense.org
 
   About the algorithm: https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 */

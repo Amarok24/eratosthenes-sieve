@@ -1,21 +1,23 @@
 /*
-  Sieve of Eratosthenes (Java implementation)
-  Author: Jan Prazak
-  Project page: https://github.com/Amarok24/eratosthenes-sieve
-  Version: 1.0
-  Date: 2021-04-26
-
-  License: The Unlicense. For more information, please refer to http://unlicense.org
-  (A license with no conditions whatsoever which dedicates works to the public domain. Unlicensed works, modifications, and larger works may be distributed under different terms and without source code.)
-
-  About the algorithm: https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
-*/
+ * Sieve of Eratosthenes (Java implementation)
+ * Version: 1.0.1
+ * Date: 2021-04-26, 2022-07-05
+ * Author: Jan Prazak
+ * Project page: https://github.com/Amarok24/eratosthenes-sieve
+ *
+ * License: The Unlicense.
+ * For more information, please refer to https://unlicense.org
+ *
+ * About the algorithm:
+ * https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
+ */
 
 import java.util.ArrayList;
 
 class Eratosthenes {
 
-  public static ArrayList <Integer> primeNumbers(int maxLimit) {
+  public static ArrayList<Integer> primeNumbers(int maxLimit) {
+
     ArrayList<Integer> field = new ArrayList<Integer>(); // A growable list (array)
     ArrayList<Integer> primes = new ArrayList<Integer>();
     int currentPrime = 2;
@@ -24,13 +26,14 @@ class Eratosthenes {
     // stopAfter = highest index after which no other primes will be sieved
     // (simplest code optimization). In Java Math.floor() returns type 'double'.
     // Type casting to int truncates the fractional part (same as using Math.floor).
-    int stopAfter = (int)Math.sqrt(maxLimit);
+    int stopAfter = (int) Math.sqrt(maxLimit);
 
     primes.add(2);
 
     if (maxLimit < 2) {
       throw new ArithmeticException("maxLimit must be > 1");
-    } else if (maxLimit == 2) {
+    }
+    else if (maxLimit == 2) {
       return primes;
     }
 
@@ -74,6 +77,7 @@ class Eratosthenes {
   }
 
   public static void main(String[] args) {
+
     int maxNum = 50;
     ArrayList<Integer> intArray = new ArrayList<Integer>();
 
@@ -83,12 +87,13 @@ class Eratosthenes {
 
     try {
       intArray = primeNumbers(maxNum);
-      for (int element: intArray) {
+      for (int element : intArray) {
         System.out.println(element);
       }
-    } catch (Exception e) {
+    }
+    catch (Exception e) {
       // This prints "java.lang.ArithmeticException: maxLimit must be > 1".
-      System.out.println(e);
+      System.err.println(e);
     }
   }
 }

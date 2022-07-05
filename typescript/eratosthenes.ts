@@ -1,17 +1,21 @@
 /*
-  Sieve of Eratosthenes (TypeScript implementation)
-  Author: Jan Prazak
-  Project page: https://github.com/Amarok24/eratosthenes-sieve
-  Version: 1.0
-  Date: 2021-04-26
+ * Sieve of Eratosthenes (TypeScript implementation)
+ * Version: 1.0.1
+ * Date: 2021-04-26, 2022-07-05
+ * Author: Jan Prazak
+ * Project page: https://github.com/Amarok24/eratosthenes-sieve
+ *
+ * This is a CLI version made to run with Deno (https://deno.land/).
+ * Usage: deno run eratosthenes.ts 1000
+ *
+ * License: The Unlicense.
+ * For more information, please refer to https://unlicense.org
+ *
+ * About the algorithm: https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
+ */
 
-  License: The Unlicense. For more information, please refer to http://unlicense.org
-  (A license with no conditions whatsoever which dedicates works to the public domain. Unlicensed works, modifications, and larger works may be distributed under different terms and without source code.)
+function primeNumbers(maxLimit: number): number[] | never {
 
-  About the algorithm: https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
-*/
-
-function primeNumbers(maxLimit: number) {
   let field: number[] = [];
   let primes: number[] = [2];
   let currentPrime: number = 2;
@@ -22,7 +26,8 @@ function primeNumbers(maxLimit: number) {
 
   if (maxLimit < 2) {
     throw new RangeError("maxLimit must be > 1");
-  } else if (maxLimit === 2) {
+  }
+  else if (maxLimit === 2) {
     return primes;
   }
 
@@ -53,7 +58,7 @@ function primeNumbers(maxLimit: number) {
     primes.push(currentPrime);
   }
 
-  // Now let's populate the primes array with all remaining numbers from field
+  // Populate the primes array with all remaining numbers from field
   currentIndex++;
   for (let i = currentIndex; i <= maxLimit; i++) {
     if (field[i] !== 0) {
@@ -65,7 +70,8 @@ function primeNumbers(maxLimit: number) {
 }
 
 
-function logPrimeNumbers(maxLimit = 50) {
+function logPrimeNumbers(maxLimit: number = 50): void | never {
+
   let primesArray: number[];
 
   try {
@@ -73,7 +79,8 @@ function logPrimeNumbers(maxLimit = 50) {
     primesArray.forEach((element) => {
       console.log(element);
     });
-  } catch (e) {
+  }
+  catch (e: unknown) {
     console.log(e); // This outputs "RangeError: maxLimit must be > 1"
   }
 }
@@ -85,6 +92,7 @@ args = Deno.args; // Use this for Deno runtime.
 
 if (args.length) {
   logPrimeNumbers(parseInt(args[0]));
-} else {
+}
+else {
   logPrimeNumbers();
 }

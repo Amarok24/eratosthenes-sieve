@@ -1,17 +1,19 @@
 /*
-  Sieve of Eratosthenes (JavaScript implementation)
-  Author: Jan Prazak
-  Project page: https://github.com/Amarok24/eratosthenes-sieve
-  Version: 1.0
-  Date: 2020-01-07
-
-  License: The Unlicense. For more information, please refer to http://unlicense.org
-  (A license with no conditions whatsoever which dedicates works to the public domain. Unlicensed works, modifications, and larger works may be distributed under different terms and without source code.)
-
-  About the algorithm: https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
-*/
+ * Sieve of Eratosthenes (JavaScript implementation)
+ * Version: 1.0.1
+ * Date: 2020-01-07, 2022-07-05
+ * Author: Jan Prazak
+ * Project page: https://github.com/Amarok24/eratosthenes-sieve
+ *
+ * License: The Unlicense.
+ * For more information, please refer to https://unlicense.org
+ *
+ * About the algorithm:
+ * https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
+ */
 
 function primeNumbers(maxLimit) {
+
   let field = [];
   let primes = [2];
   let currentPrime = 2;
@@ -22,7 +24,8 @@ function primeNumbers(maxLimit) {
 
   if (maxLimit < 2) {
     throw new RangeError("maxLimit must be > 1");
-  } else if (maxLimit === 2) {
+  }
+  else if (maxLimit === 2) {
     return primes;
   }
 
@@ -53,7 +56,7 @@ function primeNumbers(maxLimit) {
     primes.push(currentPrime);
   }
 
-  // Now let's populate the primes array with all remaining numbers from field
+  // Populate the primes array with all remaining numbers from field
   currentIndex++;
   for (let i = currentIndex; i <= maxLimit; i++) {
     if (field[i] !== 0) {
@@ -66,6 +69,7 @@ function primeNumbers(maxLimit) {
 
 
 function logPrimeNumbers(maxLimit = 50) {
+
   let primesArray;
 
   try {
@@ -73,7 +77,8 @@ function logPrimeNumbers(maxLimit = 50) {
     primesArray.forEach((element) => {
       console.log(element);
     });
-  } catch (e) {
+  }
+  catch (e) {
     console.log(e); // This outputs "RangeError: maxLimit must be > 1"
   }
 }
